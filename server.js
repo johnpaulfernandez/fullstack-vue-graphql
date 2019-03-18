@@ -1,17 +1,26 @@
 const { ApolloServer, gql } = require("apollo-server");
 
+const todos = [{ task: "Wash car", completed: false }];
+
 const typeDefs = gql`
   type Todo {
     task: String
     completed: Boolean
   }
   type Query {
-    getTodo: [Todo]
+    getTodos: [Todo]
   }
 `;
 
+const resolvers = {
+  Query: {
+    getTodos: () => todos
+  }
+};
+
 const server = new ApolloServer({
-  typeDefs
+  typeDefs,
+  resolvers
 });
 
 server.listen().then(({ url }) => {

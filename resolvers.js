@@ -1,5 +1,14 @@
 module.exports = {
   Query: {
+    getPosts: async (_, args, { Post }) => {
+      const posts = await Post.find({})
+        .sort({ createdDate: "desc" })
+        .populate({
+          path: "createdBy",
+          model: "User"
+        });
+      return posts;
+    },
     getUser: () => null // Just so apollo server won't throw an error for now
   },
   Mutation: {

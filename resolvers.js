@@ -8,8 +8,7 @@ module.exports = {
           model: "User"
         });
       return posts;
-    },
-    getUser: () => null // Just so apollo server won't throw an error for now
+    }
   },
   Mutation: {
     addPost: async (
